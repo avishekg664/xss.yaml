@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: Example API
+  description: An API example that demonstrates XSS.
+  version: 1.0.0
+paths:
+  /vulnerable:
+    get:
+      summary: A vulnerable endpoint
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "<script>alert('XSS')</script>"
